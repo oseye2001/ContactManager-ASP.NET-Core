@@ -1,0 +1,95 @@
+﻿@model ContactManager.Models.Contact
+
+@{
+    ViewData["Title"] = "Modifier le contact";
+}
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+    <div>
+        <h1 class="h3 mb-1">Modifier le contact</h1>
+        <div class="text-muted">Mettez à jour les informations du contact.</div>
+    </div>
+    <a class="btn btn-outline-secondary" asp-action="Index">
+        <i class="bi bi-arrow-left me-1"></i> Retour
+    </a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <form asp-action="Edit" asp-route-id="@Model.ContactID" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="ContactID" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label asp-for="Prenom" class="form-label fw-semibold">Prénom</label>
+                    <input asp-for="Prenom" class="form-control" />
+                    <span asp-validation-for="Prenom" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Nom" class="form-label fw-semibold">Nom</label>
+                    <input asp-for="Nom" class="form-control" />
+                    <span asp-validation-for="Nom" class="text-danger"></span>
+                </div>
+
+                <div class="col-12">
+                    <label asp-for="Adresse" class="form-label fw-semibold">Adresse</label>
+                    <input asp-for="Adresse" class="form-control" />
+                    <span asp-validation-for="Adresse" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-5">
+                    <label asp-for="Ville" class="form-label fw-semibold">Ville</label>
+                    <input asp-for="Ville" class="form-control" />
+                    <span asp-validation-for="Ville" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-3">
+                    <label asp-for="Province" class="form-label fw-semibold">Province</label>
+                    <input asp-for="Province" class="form-control" />
+                    <span asp-validation-for="Province" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-4">
+                    <label asp-for="CodePostal" class="form-label fw-semibold">Code postal</label>
+                    <input asp-for="CodePostal" class="form-control" />
+                    <span asp-validation-for="CodePostal" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Telephone" class="form-label fw-semibold">Téléphone</label>
+                    <input asp-for="Telephone" class="form-control" />
+                    <span asp-validation-for="Telephone" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Courriel" class="form-label fw-semibold">Courriel</label>
+                    <input asp-for="Courriel" class="form-control" />
+                    <span asp-validation-for="Courriel" class="text-danger"></span>
+                </div>
+
+                <div class="col-12">
+                    <label asp-for="CategorieID" class="form-label fw-semibold">Catégorie</label>
+                    <select asp-for="CategorieID" class="form-select" asp-items="ViewBag.CategorieID"></select>
+                    <span asp-validation-for="CategorieID" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save me-1"></i> Sauvegarder
+                </button>
+                <a class="btn btn-outline-secondary" asp-action="Index">Annuler</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

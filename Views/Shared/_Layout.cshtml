@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ContactManager</title>
+
+    <script type="importmap"></script>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ContactManager.styles.css" asp-append-version="true" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="cm-body">
+    <!-- Background decor -->
+    <div class="cm-bg">
+        <div class="cm-orb cm-orb-1"></div>
+        <div class="cm-orb cm-orb-2"></div>
+        <div class="cm-grid"></div>
+    </div>
+
+    <header class="cm-header">
+        <nav class="navbar navbar-expand-lg cm-navbar">
+            <div class="container">
+
+                @{
+                    var ctrl = (ViewContext.RouteData.Values["controller"]?.ToString() ?? "");
+                    var act = (ViewContext.RouteData.Values["action"]?.ToString() ?? "");
+                }
+
+                <a class="navbar-brand d-flex align-items-center gap-2" asp-controller="Home" asp-action="Index">
+                    <span class="cm-logo">
+                        <i class="bi bi-person-lines-fill"></i>
+                    </span>
+                    <span class="fw-semibold">ContactManager</span>
+                </a>
+
+                <button class="navbar-toggler cm-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#cmNav" aria-controls="cmNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="cmNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link @(ctrl == "Home" && act == "Index" ? "active" : "")"
+                               asp-controller="Home" asp-action="Index">
+                                <i class="bi bi-house me-1"></i> Accueil
+                            </a>
+                        </li>
+
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link @(ctrl == "Contacts" ? "active" : "")"
+                                   asp-controller="Contacts" asp-action="Index">
+                                    <i class="bi bi-people me-1"></i> Contacts
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(ctrl == "Categories" ? "active" : "")"
+                                   asp-controller="Categories" asp-action="Index">
+                                    <i class="bi bi-tags me-1"></i> Catégories
+                                </a>
+                            </li>
+                        }
+
+                        <li class="nav-item">
+                            <a class="nav-link @(ctrl == "Home" && act == "Privacy" ? "active" : "")"
+                               asp-controller="Home" asp-action="Privacy">
+                                <i class="bi bi-shield-check me-1"></i> Privacy
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex align-items-center gap-2">
+                        <button class="btn btn-sm cm-btn-ghost" type="button" id="themeToggle" title="Mode clair/sombre">
+                            <i class="bi bi-moon-stars"></i>
+                        </button>
+
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="cm-main">
+        <div class="container py-4">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="cm-footer">
+        <div class="container py-4">
+            <div class="row g-3 align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
+                        <span class="cm-foot-badge"><i class="bi bi-sparkles me-1"></i> ContactManager</span>
+                        
+                    </div>
+                    <div class="text-muted small mt-1">&copy; 2025 — Tous droits réservés</div>
+                </div>
+
+                <div class="col-md-6 text-center text-md-end">
+                    <a class="cm-footer-link me-3" asp-controller="Home" asp-action="Index">Accueil</a>
+                    <a class="cm-footer-link" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

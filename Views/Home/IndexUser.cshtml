@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Accueil";
+}
+
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-8">
+                <h1 class="display-6 fw-bold mb-2">
+                    Bienvenue @User.Identity!.Name 👋
+                </h1>
+
+                <p class="text-secondary mb-4">
+                    Vous êtes connecté à <strong>ContactManager</strong>.
+                    Gérez vos contacts et vos catégories facilement.
+                </p>
+
+                <div class="d-flex gap-3 flex-wrap mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="text-muted small">Contacts</div>
+                            <div class="fs-4 fw-bold">@ViewBag.TotalContacts</div>
+                        </div>
+                    </div>
+
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="text-muted small">Catégories</div>
+                            <div class="fs-4 fw-bold">@ViewBag.TotalCategories</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-2 flex-wrap">
+                    <a class="btn btn-primary btn-lg"
+                       asp-controller="Contacts" asp-action="Index">
+                        <i class="bi bi-person-lines-fill me-1"></i>
+                        Gérer mes contacts
+                    </a>
+
+                    <a class="btn btn-outline-secondary btn-lg"
+                       asp-controller="Categories" asp-action="Index">
+                        <i class="bi bi-tags me-1"></i>
+                        Gérer les catégories
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 text-center">
+                <img src="~/images/logo.jpg"
+                     class="img-fluid"
+                     style="max-height:220px"
+                     alt="Logo ContactManager" />
+            </div>
+        </div>
+    </div>
+</section>

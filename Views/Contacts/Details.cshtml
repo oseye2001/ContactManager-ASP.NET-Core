@@ -1,0 +1,75 @@
+﻿@model ContactManager.Models.Contact
+
+@{
+    ViewData["Title"] = "Détails du contact";
+}
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+    <div>
+        <h1 class="h3 mb-1">Détails</h1>
+        <div class="text-muted">Informations complètes du contact.</div>
+    </div>
+    <a class="btn btn-outline-secondary" asp-action="Index">
+        <i class="bi bi-arrow-left me-1"></i> Retour
+    </a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="text-muted small">Prénom</div>
+                <div class="fw-semibold">@Model.Prenom</div>
+            </div>
+            <div class="col-md-6">
+                <div class="text-muted small">Nom</div>
+                <div class="fw-semibold">@Model.Nom</div>
+            </div>
+
+            <div class="col-12">
+                <div class="text-muted small">Adresse</div>
+                <div class="fw-semibold">@Model.Adresse</div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="text-muted small">Ville</div>
+                <div class="fw-semibold">@Model.Ville</div>
+            </div>
+            <div class="col-md-3">
+                <div class="text-muted small">Province</div>
+                <div class="fw-semibold">@Model.Province</div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-muted small">Code postal</div>
+                <div class="fw-semibold">@Model.CodePostal</div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="text-muted small">Téléphone</div>
+                <div class="fw-semibold">@Model.Telephone</div>
+            </div>
+            <div class="col-md-6">
+                <div class="text-muted small">Courriel</div>
+                <div class="fw-semibold">@Model.Courriel</div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="text-muted small">Catégorie</div>
+                <div class="fw-semibold">@Model.Categorie?.Nom</div>
+            </div>
+            <div class="col-md-6">
+                <div class="text-muted small">Date de création</div>
+                <div class="fw-semibold">@Model.DateCreation.ToLocalTime().ToString("yyyy-MM-dd HH:mm")</div>
+            </div>
+        </div>
+
+        <div class="d-flex gap-2 mt-4">
+            <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@Model.ContactID">
+                <i class="bi bi-pencil-square me-1"></i> Modifier
+            </a>
+            <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@Model.ContactID">
+                <i class="bi bi-trash me-1"></i> Supprimer
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Privacy";
+}
+
+<section class="py-4">
+    <div class="container">
+        <div class="d-flex align-items-start justify-content-between mb-3">
+            <div>
+                <h1 class="h3 mb-1">Politique de confidentialité</h1>
+                <div class="text-muted">
+                    Informations sur la protection des données et l’utilisation de l’application ContactManager.
+                </div>
+            </div>
+
+            <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">
+                <i class="bi bi-arrow-left me-1"></i> Retour
+            </a>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <h2 class="h5 fw-bold mb-2">1) Données collectées</h2>
+                        <p class="text-secondary">
+                            ContactManager stocke uniquement les informations nécessaires au fonctionnement du gestionnaire de contacts,
+                            par exemple : prénom, nom, adresse, téléphone, courriel, catégorie, et date de création.
+                        </p>
+
+                        <h2 class="h5 fw-bold mt-4 mb-2">2) Compte utilisateur (Identity)</h2>
+                        <p class="text-secondary">
+                            L’authentification est gérée par ASP.NET Core Identity. Les utilisateurs créent un compte avec un courriel
+                            (ou nom d’utilisateur) et un mot de passe. Les mots de passe sont stockés de manière sécurisée (hachage).
+                        </p>
+
+                        <h2 class="h5 fw-bold mt-4 mb-2">3) Accès et confidentialité</h2>
+                        <p class="text-secondary">
+                            Seuls les utilisateurs authentifiés peuvent gérer des contacts. Chaque utilisateur ne peut consulter et modifier
+                            que ses propres contacts (isolation des données par utilisateur).
+                        </p>
+
+                        <h2 class="h5 fw-bold mt-4 mb-2">4) Cookies & session</h2>
+                        <p class="text-secondary">
+                            L’application utilise des cookies d’authentification pour maintenir la session (connexion).
+                            Aucun cookie publicitaire n’est utilisé.
+                        </p>
+
+                        <h2 class="h5 fw-bold mt-4 mb-2">5) Conservation & suppression</h2>
+                        <p class="text-secondary mb-0">
+                            L’utilisateur peut supprimer ses contacts à tout moment via l’interface. Les données sont conservées dans la base
+                            de données SQL Server utilisée par l’application.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <i class="bi bi-shield-lock fs-4"></i>
+                            <div class="fw-bold">Résumé</div>
+                        </div>
+                        <ul class="text-secondary mb-0">
+                            <li>Authentification via Identity</li>
+                            <li>Données accessibles seulement après connexion</li>
+                            <li>Isolation des contacts par utilisateur</li>
+                            <li>Gestion CRUD + suppression possible</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm border-0 mt-3">
+                    <div class="card-body p-4">
+                        <div class="fw-bold mb-2">Contact</div>
+                        <div class="text-secondary small">
+                            Pour toute question sur la confidentialité, contactez l’administrateur de l’application (prototype).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

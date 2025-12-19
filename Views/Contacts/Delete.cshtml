@@ -1,0 +1,40 @@
+﻿@model ContactManager.Models.Contact
+
+@{
+    ViewData["Title"] = "Supprimer le contact";
+}
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+    <div>
+        <h1 class="h3 mb-1">Supprimer</h1>
+        <div class="text-muted">Confirmation de suppression.</div>
+    </div>
+    <a class="btn btn-outline-secondary" asp-action="Index">
+        <i class="bi bi-arrow-left me-1"></i> Retour
+    </a>
+</div>
+
+<div class="card shadow-sm border-danger">
+    <div class="card-body">
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <i class="bi bi-exclamation-octagon-fill me-2"></i>
+            <div>
+                <div class="fw-semibold">Attention</div>
+                Voulez-vous vraiment supprimer le contact :
+                <span class="fw-semibold">@Model.Prenom @Model.Nom</span> ?
+            </div>
+        </div>
+
+        <div class="mb-3 text-muted">
+            Catégorie : <span class="fw-semibold">@Model.Categorie?.Nom</span>
+        </div>
+
+        <form asp-action="Delete" method="post" class="d-flex gap-2">
+            <input type="hidden" asp-for="ContactID" />
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-trash me-1"></i> Supprimer
+            </button>
+            <a class="btn btn-outline-secondary" asp-action="Index">Annuler</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+﻿@model ContactManager.Models.Categorie
+
+@{
+    ViewData["Title"] = "Supprimer la catégorie";
+}
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+    <div>
+        <h1 class="h3 mb-1">Supprimer</h1>
+        <div class="text-muted">Confirmation de suppression.</div>
+    </div>
+    <a class="btn btn-outline-secondary" asp-action="Index">
+        <i class="bi bi-arrow-left me-1"></i> Retour
+    </a>
+</div>
+
+<div class="card shadow-sm border-danger">
+    <div class="card-body">
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <i class="bi bi-exclamation-octagon-fill me-2"></i>
+            <div>
+                <div class="fw-semibold">Attention</div>
+                Cette action est définitive. Voulez-vous vraiment supprimer la catégorie :
+                <span class="fw-semibold">@Model.Nom</span> ?
+            </div>
+        </div>
+
+        <form asp-action="Delete" method="post" class="d-flex gap-2">
+            <input type="hidden" asp-for="CategorieID" />
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-trash me-1"></i> Supprimer
+            </button>
+            <a class="btn btn-outline-secondary" asp-action="Index">Annuler</a>
+        </form>
+    </div>
+</div>

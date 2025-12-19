@@ -1,0 +1,93 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Se connecter";
+}
+
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-5">
+        <div class="card shadow-sm">
+            <div class="card-body p-4 p-md-5">
+
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h1 class="h4 fw-bold mb-0">@ViewData["Title"]</h1>
+                    <a class="btn btn-sm btn-outline-secondary"
+                       asp-controller="Home" asp-action="Index">
+                        <i class="bi bi-arrow-left me-1"></i> Accueil
+                    </a>
+                </div>
+
+                <p class="text-muted mb-4">
+                    Connectez-vous pour accéder à vos contacts et catégories.
+                </p>
+
+                <form id="account" method="post">
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="text-danger mb-3"
+                         role="alert"></div>
+
+                    <!-- Email -->
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Email"
+                               class="form-control"
+                               autocomplete="username"
+                               aria-required="true"
+                               placeholder=" " />
+                        <label asp-for="Input.Email">Adresse courriel</label>
+                        <span asp-validation-for="Input.Email"
+                              class="text-danger"></span>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Password"
+                               class="form-control"
+                               autocomplete="current-password"
+                               aria-required="true"
+                               placeholder=" " />
+                        <label asp-for="Input.Password">Mot de passe</label>
+                        <span asp-validation-for="Input.Password"
+                              class="text-danger"></span>
+                    </div>
+
+                    <!-- Remember me -->
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" asp-for="Input.RememberMe" />
+                            <label class="form-check-label" asp-for="Input.RememberMe">
+                                Se souvenir de moi
+                            </label>
+                        </div>
+
+                        <a id="forgot-password"
+                           class="small"
+                           asp-page="./ForgotPassword">
+                            Mot de passe oublié ?
+                        </a>
+                    </div>
+
+                    <button id="login-submit"
+                            type="submit"
+                            class="w-100 btn btn-lg btn-primary">
+                        <i class="bi bi-box-arrow-in-right me-1"></i>
+                        Se connecter
+                    </button>
+
+                    <div class="text-muted small mt-3 text-center">
+                        Pas encore de compte ?
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">
+                            Créer un compte
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

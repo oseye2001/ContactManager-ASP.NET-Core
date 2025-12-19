@@ -1,0 +1,591 @@
+/* =========================
+   GLOBAL
+   ========================= */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Empêche la navbar sticky de cacher les ancres */
+[id] {
+    scroll-margin-top: 110px;
+}
+
+/* =========================
+   THEME VARIABLES
+   ========================= */
+:root {
+    /* Background */
+    --cm-bg: #0b1020;
+    --cm-bg-2: #0f172a;
+    /* Surfaces */
+    --cm-surface: rgba(255,255,255,.08);
+    --cm-surface-2: rgba(255,255,255,.06);
+    --cm-card: rgba(255,255,255,.08);
+    /* Borders / Shadow / Radius */
+    --cm-border: rgba(255,255,255,.14);
+    --cm-border-strong: rgba(255,255,255,.22);
+    --cm-shadow: 0 20px 60px rgba(0,0,0,.45);
+    --cm-radius: 18px;
+    /* Text */
+    --cm-text: #e5e7eb; /* titres / texte fort */
+    --cm-bodytext: #dbe2ef; /* texte normal */
+    --cm-muted: #aab4c5; /* texte secondaire */
+    /* Accent */
+    --cm-accent: #3b82f6;
+    --cm-accent2: #6366f1;
+    /* Links */
+    --cm-link: #93c5fd;
+    --cm-link-hover: #bfdbfe;
+    /* Forms/Tables */
+    --cm-placeholder: #a6b1c2;
+    /* CTA (bandeau sombre) */
+    --cm-cta-bg: rgba(15,23,42,.82);
+    --cm-cta-border: rgba(255,255,255,.14);
+    /* Section “Fonctionnalités” (fond adaptatif) */
+    --cm-section-bg: rgba(255,255,255,.08);
+    --cm-section-border: rgba(255,255,255,.18);
+}
+
+.cm-light {
+    --cm-bg: #f8fafc;
+    --cm-bg-2: #eef2ff;
+    --cm-surface: rgba(255,255,255,.92);
+    --cm-surface-2: rgba(15,23,42,.04);
+    --cm-card: rgba(255,255,255,.92);
+    --cm-border: rgba(15,23,42,.12);
+    --cm-border-strong: rgba(15,23,42,.16);
+    --cm-shadow: 0 20px 50px rgba(2,6,23,.10);
+    --cm-text: #0f172a;
+    --cm-bodytext: #1f2937;
+    --cm-muted: #475569;
+    --cm-link: #1d4ed8;
+    --cm-link-hover: #1e40af;
+    --cm-placeholder: #64748b;
+    /* CTA reste sombre même en light (mais lisible) */
+    --cm-cta-bg: rgba(15,23,42,.84);
+    --cm-cta-border: rgba(15,23,42,.14);
+    /* Section fond adaptatif en light */
+    --cm-section-bg: rgba(255,255,255,.92);
+    --cm-section-border: rgba(15,23,42,.12);
+}
+
+/* =========================
+   BODY / TYPO
+   ========================= */
+.cm-body {
+    color: var(--cm-bodytext);
+    background: linear-gradient(180deg, var(--cm-bg) 0%, var(--cm-bg-2) 100%);
+    min-height: 100vh;
+}
+
+body {
+    color: var(--cm-bodytext) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--cm-text) !important;
+}
+
+p, small, .form-text {
+    color: var(--cm-muted) !important;
+}
+
+label {
+    color: var(--cm-bodytext) !important;
+}
+
+.text-muted, .text-secondary {
+    color: var(--cm-muted) !important;
+}
+
+/* Links */
+a {
+    color: var(--cm-link) !important;
+    text-underline-offset: 3px;
+}
+
+    a:hover {
+        color: var(--cm-link-hover) !important;
+    }
+
+/* =========================
+   BACKGROUND DECOR
+   ========================= */
+.cm-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.cm-orb {
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    border-radius: 999px;
+    filter: blur(60px);
+    opacity: .55;
+    transform: translate3d(0,0,0);
+}
+
+.cm-orb-1 {
+    left: -180px;
+    top: -200px;
+    background: radial-gradient(circle at 30% 30%, var(--cm-accent), transparent 65%);
+    animation: float1 12s ease-in-out infinite;
+}
+
+.cm-orb-2 {
+    right: -220px;
+    bottom: -240px;
+    background: radial-gradient(circle at 35% 35%, var(--cm-accent2), transparent 65%);
+    animation: float2 14s ease-in-out infinite;
+}
+
+.cm-grid {
+    position: absolute;
+    inset: -2px;
+    background-image: linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: .16;
+    mask-image: radial-gradient(circle at 35% 20%, black 0%, transparent 55%);
+}
+
+@keyframes float1 {
+    0%,100% {
+        transform: translate(0,0)
+    }
+
+    50% {
+        transform: translate(40px,55px)
+    }
+}
+
+@keyframes float2 {
+    0%,100% {
+        transform: translate(0,0)
+    }
+
+    50% {
+        transform: translate(-45px,-40px)
+    }
+}
+
+/* =========================
+   NAVBAR (GLASS)
+   ========================= */
+.cm-header {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    backdrop-filter: blur(12px);
+}
+
+.cm-navbar {
+    margin: 14px 0;
+    border: 1px solid var(--cm-border-strong);
+    background: rgba(255,255,255,.05);
+    border-radius: 16px;
+    box-shadow: var(--cm-shadow);
+}
+
+.cm-light .cm-navbar {
+    background: rgba(255,255,255,.75);
+}
+
+.cm-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, var(--cm-accent), var(--cm-accent2));
+    color: #fff;
+    box-shadow: 0 12px 32px rgba(59,130,246,.25);
+}
+
+.nav-link {
+    color: var(--cm-muted) !important;
+    border-radius: 12px;
+    padding: .55rem .8rem;
+}
+
+    .nav-link:hover {
+        color: var(--cm-text) !important;
+        background: rgba(255,255,255,.08);
+    }
+
+.cm-light .nav-link:hover {
+    background: rgba(15,23,42,.06);
+}
+
+.cm-navbar .nav-link.active {
+    color: var(--cm-text) !important;
+    background: rgba(99,102,241,.14) !important;
+    border: 1px solid var(--cm-border-strong) !important;
+}
+
+.cm-btn-ghost {
+    border: 1px solid var(--cm-border-strong);
+    color: var(--cm-text);
+    background: rgba(255,255,255,.06);
+}
+
+    .cm-btn-ghost:hover {
+        background: rgba(255,255,255,.10);
+    }
+
+/* =========================
+   MAIN
+   ========================= */
+.cm-main .container {
+    max-width: 1080px;
+}
+
+/* =========================
+   CARDS
+   ========================= */
+.card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--cm-radius) !important;
+    border: 1px solid var(--cm-border-strong) !important;
+    background: var(--cm-card) !important;
+    box-shadow: var(--cm-shadow);
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+}
+
+    .card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(99,102,241,.45) !important;
+        box-shadow: 0 24px 70px rgba(0,0,0,.55);
+    }
+
+.cm-light .card:hover {
+    box-shadow: 0 24px 70px rgba(2,6,23,.14);
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: var(--cm-radius);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .18s ease;
+    background: radial-gradient(600px circle at 50% 20%, rgba(99,102,241,.18), transparent 55%);
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card-header {
+    border-bottom: 1px solid var(--cm-border-strong) !important;
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+.btn {
+    border-radius: 14px !important;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--cm-accent), var(--cm-accent2)) !important;
+    border: 0 !important;
+    color: #fff !important;
+    box-shadow: 0 16px 40px rgba(59,130,246,.35);
+}
+
+.btn-dark {
+    background: rgba(255,255,255,.08) !important;
+    border-color: var(--cm-border-strong) !important;
+    color: var(--cm-text) !important;
+}
+
+.btn-outline-secondary,
+.btn-outline-light,
+.btn-outline-primary,
+.btn-outline-danger {
+    border-color: var(--cm-border-strong) !important;
+    color: var(--cm-bodytext) !important;
+}
+
+    .btn-outline-secondary:hover,
+    .btn-outline-primary:hover {
+        background: rgba(99,102,241,.12) !important;
+        color: var(--cm-text) !important;
+    }
+
+    .btn-outline-danger:hover {
+        background: rgba(239,68,68,.18) !important;
+        border-color: rgba(239,68,68,.35) !important;
+        color: var(--cm-text) !important;
+    }
+
+/* CTA Button (spécial : lisible sur CTA sombre) */
+.cm-btn-cta {
+    background: rgba(255,255,255,.92) !important;
+    color: #1d4ed8 !important;
+    border: 1px solid rgba(255,255,255,.35) !important;
+    font-weight: 700 !important;
+}
+
+    .cm-btn-cta:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 16px 40px rgba(2,6,23,.25);
+    }
+
+/* =========================
+   BADGES
+   ========================= */
+.badge.text-bg-secondary {
+    background: rgba(99,102,241,.14) !important;
+    border: 1px solid var(--cm-border-strong);
+    color: var(--cm-text) !important;
+}
+
+.badge.text-bg-light {
+    background: rgba(255,255,255,.10) !important;
+    color: var(--cm-text) !important;
+    border: 1px solid var(--cm-border-strong) !important;
+}
+
+/* =========================
+   TABLES
+   ========================= */
+.table {
+    color: var(--cm-bodytext) !important;
+}
+
+    .table td, .table th {
+        border-color: rgba(255,255,255,.10);
+    }
+
+.cm-light .table td, .cm-light .table th {
+    border-color: rgba(15,23,42,.10);
+}
+
+.table-responsive {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* Fond des cellules */
+.table tbody tr > * {
+    background-color: rgba(15,23,42,.70) !important;
+    color: var(--cm-bodytext) !important;
+}
+
+.cm-light .table tbody tr > * {
+    background-color: rgba(255,255,255,.92) !important;
+    color: var(--cm-bodytext) !important;
+}
+
+/* Header = même fond que tbody */
+.table thead tr > * {
+    background-color: rgba(15,23,42,.70) !important;
+    color: var(--cm-text) !important;
+    border-bottom: 1px solid rgba(255,255,255,.12) !important;
+}
+
+.cm-light .table thead tr > * {
+    background-color: rgba(255,255,255,.92) !important;
+    color: var(--cm-text) !important;
+    border-bottom: 1px solid rgba(15,23,42,.12) !important;
+}
+
+/* Hover */
+.table.table-hover tbody tr:hover > * {
+    background-color: rgba(99,102,241,.18) !important;
+}
+
+.cm-light .table.table-hover tbody tr:hover > * {
+    background-color: rgba(99,102,241,.08) !important;
+}
+
+/* liens dans header de table */
+.cm-th-link {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+    .cm-th-link:hover {
+        text-decoration: underline !important;
+    }
+
+/* =========================
+   FORMS
+   ========================= */
+.form-control, .form-select, textarea {
+    background-color: var(--cm-surface-2) !important;
+    color: var(--cm-bodytext) !important;
+    border-color: var(--cm-border-strong) !important;
+}
+
+    .form-control::placeholder {
+        color: var(--cm-placeholder) !important;
+        opacity: 1;
+    }
+
+    .form-control:focus, .form-select:focus, textarea:focus {
+        border-color: rgba(99,102,241,.65) !important;
+        box-shadow: 0 0 0 .25rem rgba(99,102,241,.22) !important;
+    }
+
+.input-group-text {
+    background: var(--cm-surface-2) !important;
+    border-color: var(--cm-border-strong) !important;
+    color: var(--cm-muted) !important;
+}
+
+/* =========================
+   ALERTS / DROPDOWNS / PAGINATION
+   ========================= */
+.alert {
+    border-radius: 16px;
+    border: 1px solid var(--cm-border-strong);
+    background: var(--cm-surface);
+    color: var(--cm-bodytext);
+}
+
+.dropdown-menu {
+    background: var(--cm-surface) !important;
+    border-color: var(--cm-border-strong) !important;
+}
+
+.dropdown-item {
+    color: var(--cm-bodytext) !important;
+}
+
+    .dropdown-item:hover {
+        background: rgba(99,102,241,.12) !important;
+        color: var(--cm-text) !important;
+    }
+
+.page-link {
+    background: var(--cm-surface-2) !important;
+    border-color: var(--cm-border-strong) !important;
+    color: var(--cm-bodytext) !important;
+}
+
+    .page-link:hover {
+        background: rgba(99,102,241,.12) !important;
+        color: var(--cm-text) !important;
+    }
+
+.page-item.disabled .page-link {
+    background: rgba(255,255,255,.04);
+    border-color: rgba(255,255,255,.08);
+    color: rgba(148,163,184,.65) !important;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+.cm-footer {
+    border-top: 1px solid var(--cm-border-strong);
+    background: rgba(255,255,255,.03);
+}
+
+.cm-foot-badge {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--cm-border-strong);
+    background: rgba(255,255,255,.06);
+    padding: .35rem .6rem;
+    border-radius: 999px;
+}
+
+.cm-footer-link {
+    color: var(--cm-muted) !important;
+    text-decoration: none;
+}
+
+    .cm-footer-link:hover {
+        color: var(--cm-text) !important;
+        text-decoration: underline;
+    }
+
+.btn-group .btn {
+    border-radius: 12px !important;
+}
+
+/* =========================
+   SECTIONS “FIX LISIBILITÉ”
+   -> IMPORTANT : plus de * { color: ... } qui casse tout
+   ========================= */
+
+/* Section “Fonctionnalités” : suit le thème */
+.cm-surface-light {
+    background: var(--cm-section-bg) !important;
+    border: 1px solid var(--cm-section-border) !important;
+    border-radius: 22px;
+    padding: 28px 0;
+}
+
+/* CTA : sombre dans les 2 modes + texte lisible */
+.cm-surface-dark {
+    background: var(--cm-cta-bg) !important;
+    border: 1px solid var(--cm-cta-border) !important;
+    border-radius: 22px;
+    padding: 32px;
+}
+
+    .cm-surface-dark, .cm-surface-dark * {
+        color: #e5e7eb !important;
+    }
+
+.cm-muted-on-dark {
+    color: rgba(229,231,235,.78) !important;
+}
+/* =========================
+   CTA (auto light/dark)
+   ========================= */
+.cm-cta {
+    border-radius: 22px;
+    padding: 32px;
+    border: 1px solid rgba(255,255,255,.14);
+    background: rgba(15,23,42,.82); /* dark par défaut */
+    color: #e5e7eb;
+}
+
+    .cm-cta .cm-cta-sub {
+        color: rgba(229,231,235,.78);
+    }
+
+/* En light mode : CTA devient clair */
+.cm-light .cm-cta {
+    background: rgba(255,255,255,.92);
+    border: 1px solid rgba(15,23,42,.12);
+    color: #0f172a;
+}
+
+    .cm-light .cm-cta .cm-cta-sub {
+        color: #475569;
+    }
+
+/* Bouton CTA : FORCER la lisibilité (évite que .cm-surface-dark * écrase) */
+.cm-btn-cta {
+    background: rgba(255,255,255,.94) !important;
+    border: 1px solid rgba(255,255,255,.35) !important;
+    color: #1d4ed8 !important;
+    font-weight: 800;
+}
+
+    .cm-btn-cta i {
+        color: #1d4ed8 !important;
+    }
+
+/* En light mode : bouton plus “primary” (optionnel mais propre) */
+.cm-light .cm-btn-cta {
+    background: linear-gradient(135deg, var(--cm-accent), var(--cm-accent2)) !important;
+    border: 0 !important;
+    color: #fff !important;
+}
+
+    .cm-light .cm-btn-cta i {
+        color: #fff !important;
+    }

@@ -1,0 +1,46 @@
+﻿@page
+@model LogoutModel
+@{
+    ViewData["Title"] = "Déconnexion";
+}
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow-sm border-0 text-center">
+                    <div class="card-body p-4">
+                        <img src="~/images/logo.jpg"
+                             class="img-fluid mb-3"
+                             style="max-height:120px"
+                             alt="Logo ContactManager" />
+
+                        <h1 class="h4 fw-bold mb-2">Vous êtes déconnecté</h1>
+
+                        <p class="text-secondary mb-4">
+                            Vous avez été déconnecté avec succès de <strong>ContactManager</strong>.
+                        </p>
+
+                        <div class="d-flex justify-content-center gap-2 flex-wrap">
+                            <a class="btn btn-primary"
+                               asp-page="/Index">
+                                <i class="bi bi-house me-1"></i>
+                                Accueil
+                            </a>
+
+                            <a class="btn btn-outline-secondary"
+                               asp-page="/Login">
+                                <i class="bi bi-box-arrow-in-right me-1"></i>
+                                Se reconnecter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center text-muted small mt-3">
+                    Merci d’avoir utilisé ContactManager.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
